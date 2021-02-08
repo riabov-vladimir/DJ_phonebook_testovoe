@@ -38,7 +38,7 @@ class ContactDetail(APIView):
 
 class ContactList(APIView):
     """
-    List all Contacts, or create a new snippet.
+    List all Contacts, or create a new contact.
     """
     def get(self, request, format=None):
         contacts = Contact.objects.all()

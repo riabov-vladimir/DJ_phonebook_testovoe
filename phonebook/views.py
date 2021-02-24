@@ -16,6 +16,7 @@ class ContactDetail(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
+        """Отобразить контакт по id"""
         contact = self.get_object(pk)
         serializer = ContactSerializer(contact)
         return Response(serializer.data)

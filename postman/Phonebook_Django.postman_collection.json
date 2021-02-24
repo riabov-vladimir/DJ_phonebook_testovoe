@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "9db09eb1-6594-468c-bed3-d0bd69041988",
+		"name": "Phonebook Django",
+		"description": " API приложения \"Телефонная книга\"\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Отобразить все контакты",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/contact/",
+				"description": "def get(self, request, pk, format=None):\n    contact = self.get_object(pk)\n    serializer = ContactSerializer(contack)\n    return Response(serializer.data)"
+			},
+			"response": [
+				{
+					"name": "Отобразить все контакты",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/contact/"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 23 Feb 2021 13:23:28 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "262"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Alex\",\n        \"surname\": \"Defo\",\n        \"phone\": \"+79991112233\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"JOHN\",\n        \"surname\": \"Doe\",\n        \"phone\": \"+79994445566\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Vlad\",\n        \"surname\": \"Tsepesch\",\n        \"phone\": \"+426661313137\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Vlad\",\n        \"surname\": \"Tsepesch\",\n        \"phone\": \"+426661313137\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Отобразить контакт по id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/contact/2",
+				"description": "def get_object(self, pk):\n    try:\n        return Contact.objects.get(pk=pk)\n    except Contact.DoesNotExist:\n        raise Http404"
+			},
+			"response": [
+				{
+					"name": "Отобразить контакт по id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/contact/2"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 23 Feb 2021 11:56:18 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"name\": \"Jane\",\n    \"surname\": \"Doe\",\n    \"phone\": \"+79994445566\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Создать новый контакт",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Vlad",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Tsepesch",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "+426661313137",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/contact/",
+				"description": "def post(self, request, format=None):\n    serializer = ContactSerializer(data=request.data)\n    if serializer.is_valid():\n        serializer.save()\n        contact = Contact.objects.last()\n        return Response(f'{contact} created', status=status.HTTP_201_CREATED)  # serializer.data\n    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)"
+			},
+			"response": [
+				{
+					"name": "Создать новый контакт",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Vlad",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Tsepesch",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+426661313137",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://127.0.0.1:8000/contact/"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 23 Feb 2021 13:52:57 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "\"Contact No.8 created\""
+				}
+			]
+		},
+		{
+			"name": "Изменить контакт",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "JOHN",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/contact/3/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"contact",
+						"3",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "John",
+							"disabled": true
+						}
+					]
+				},
+				"description": "def put(self, request, pk, format=None):\n    contact = self.get_object(pk)\n    serializer = ContactSerializer(contact, data=request.data)\n    if serializer.is_valid():\n        serializer.save()\n        return Response(serializer.data)\n    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)"
+			},
+			"response": [
+				{
+					"name": "Изменить контакт",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "JOHN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/contact/3/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"contact",
+								"3",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "John",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 23 Feb 2021 12:04:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"name\": \"JOHN\",\n    \"surname\": \"Doe\",\n    \"phone\": \"+79994445566\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Удалить контакт по id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://127.0.0.1:8000/contact/2/",
+				"description": "def put(self, request, pk, format=None):\n    contact = self.get_object(pk)\n    serializer = ContactSerializer(contact, data=request.data)\n    if serializer.is_valid():\n        serializer.save()\n        return Response(serializer.data)\n    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

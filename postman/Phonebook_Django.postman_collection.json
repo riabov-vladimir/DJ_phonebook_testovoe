@@ -3,32 +3,100 @@
 		"_postman_id": "9db09eb1-6594-468c-bed3-d0bd69041988",
 		"name": "Phonebook Django",
 		"description": " API приложения \"Телефонная книга\"\n",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Отобразить все контакты",
+			"name": "Создать новый контакт",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"url": "http://127.0.0.1:8000/contact/",
-				"description": "def get(self, request, pk, format=None):\n    contact = self.get_object(pk)\n    serializer = ContactSerializer(contack)\n    return Response(serializer.data)"
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Jane",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Doe",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "+79998887766",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/contact/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"contact",
+						""
+					]
+				},
+				"description": "По методу POST создаётся новый контакт в телефонной книге. Поля \"name\", \"surname\" и \"phone\" передаются в теле запроса в формате form-data."
 			},
 			"response": [
 				{
-					"name": "Отобразить все контакты",
+					"name": "Создать новый контакт",
 					"originalRequest": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": "http://127.0.0.1:8000/contact/"
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Jane",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Doe",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+79998887766",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/contact/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"contact",
+								""
+							]
+						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Created",
+					"code": 201,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
 							"key": "Date",
-							"value": "Tue, 23 Feb 2021 13:23:28 GMT"
+							"value": "Wed, 24 Feb 2021 08:31:22 GMT"
 						},
 						{
 							"key": "Server",
@@ -52,7 +120,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "262"
+							"value": "23"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -64,7 +132,97 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Alex\",\n        \"surname\": \"Defo\",\n        \"phone\": \"+79991112233\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"JOHN\",\n        \"surname\": \"Doe\",\n        \"phone\": \"+79994445566\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Vlad\",\n        \"surname\": \"Tsepesch\",\n        \"phone\": \"+426661313137\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Vlad\",\n        \"surname\": \"Tsepesch\",\n        \"phone\": \"+426661313137\"\n    }\n]"
+					"body": "\"Contact No.1 created\""
+				}
+			]
+		},
+		{
+			"name": "Отобразить все контакты",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/contact/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"contact",
+						""
+					]
+				},
+				"description": "По методу GET без идентификатора возвращается массив, содержащий все записи из телефонной книги."
+			},
+			"response": [
+				{
+					"name": "Отобразить все контакты",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/contact/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"contact",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 24 Feb 2021 08:31:55 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, POST, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Jane\",\n        \"surname\": \"Doe\",\n        \"phone\": \"+79998887766\"\n    }\n]"
 				}
 			]
 		},
@@ -73,8 +231,22 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://127.0.0.1:8000/contact/2",
-				"description": "def get_object(self, pk):\n    try:\n        return Contact.objects.get(pk=pk)\n    except Contact.DoesNotExist:\n        raise Http404"
+				"url": {
+					"raw": "http://127.0.0.1:8000/contact/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"contact",
+						"1"
+					]
+				},
+				"description": "По методу GET с указанием идентификатора возвращается конкретная запись из телефонной книги."
 			},
 			"response": [
 				{
@@ -82,7 +254,21 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/contact/2"
+						"url": {
+							"raw": "http://127.0.0.1:8000/contact/10",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"contact",
+								"10"
+							]
+						}
 					},
 					"status": "OK",
 					"code": 200,
@@ -90,7 +276,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Tue, 23 Feb 2021 11:56:18 GMT"
+							"value": "Wed, 24 Feb 2021 08:55:25 GMT"
 						},
 						{
 							"key": "Server",
@@ -114,7 +300,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "61"
+							"value": "62"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -126,109 +312,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 2,\n    \"name\": \"Jane\",\n    \"surname\": \"Doe\",\n    \"phone\": \"+79994445566\"\n}"
-				}
-			]
-		},
-		{
-			"name": "Создать новый контакт",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "Vlad",
-							"type": "text"
-						},
-						{
-							"key": "surname",
-							"value": "Tsepesch",
-							"type": "text"
-						},
-						{
-							"key": "phone",
-							"value": "+426661313137",
-							"type": "text"
-						}
-					]
-				},
-				"url": "http://127.0.0.1:8000/contact/",
-				"description": "def post(self, request, format=None):\n    serializer = ContactSerializer(data=request.data)\n    if serializer.is_valid():\n        serializer.save()\n        contact = Contact.objects.last()\n        return Response(f'{contact} created', status=status.HTTP_201_CREATED)  # serializer.data\n    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)"
-			},
-			"response": [
-				{
-					"name": "Создать новый контакт",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Vlad",
-									"type": "text"
-								},
-								{
-									"key": "surname",
-									"value": "Tsepesch",
-									"type": "text"
-								},
-								{
-									"key": "phone",
-									"value": "+426661313137",
-									"type": "text"
-								}
-							]
-						},
-						"url": "http://127.0.0.1:8000/contact/"
-					},
-					"status": "Created",
-					"code": 201,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Tue, 23 Feb 2021 13:52:57 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "WSGIServer/0.2 CPython/3.8.5"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept, Cookie"
-						},
-						{
-							"key": "Allow",
-							"value": "GET, POST, HEAD, OPTIONS"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "DENY"
-						},
-						{
-							"key": "Content-Length",
-							"value": "22"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "same-origin"
-						}
-					],
-					"cookie": [],
-					"body": "\"Contact No.8 created\""
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Jane\",\n    \"surname\": \"Doe\",\n    \"phone\": \"+79998887766\"\n}"
 				}
 			]
 		},
@@ -248,7 +332,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/contact/3/",
+					"raw": "http://127.0.0.1:8000/contact/1/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -259,7 +343,7 @@
 					"port": "8000",
 					"path": [
 						"contact",
-						"3",
+						"1",
 						""
 					],
 					"query": [
@@ -270,7 +354,7 @@
 						}
 					]
 				},
-				"description": "def put(self, request, pk, format=None):\n    contact = self.get_object(pk)\n    serializer = ContactSerializer(contact, data=request.data)\n    if serializer.is_valid():\n        serializer.save()\n        return Response(serializer.data)\n    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)"
+				"description": "По методу PUT с указанием идентификатора изменяются поля конкретной записи в телефонной книги, указанные в параметрах запроса."
 			},
 			"response": [
 				{
@@ -289,7 +373,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/contact/3/",
+							"raw": "http://127.0.0.1:8000/contact/1/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -300,7 +384,7 @@
 							"port": "8000",
 							"path": [
 								"contact",
-								"3",
+								"1",
 								""
 							],
 							"query": [
@@ -318,7 +402,7 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Tue, 23 Feb 2021 12:04:44 GMT"
+							"value": "Wed, 24 Feb 2021 08:56:27 GMT"
 						},
 						{
 							"key": "Server",
@@ -342,7 +426,7 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "61"
+							"value": "62"
 						},
 						{
 							"key": "X-Content-Type-Options",
@@ -354,7 +438,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 3,\n    \"name\": \"JOHN\",\n    \"surname\": \"Doe\",\n    \"phone\": \"+79994445566\"\n}"
+					"body": "{\n    \"id\": 1,\n    \"name\": \"JOHN\",\n    \"surname\": \"Doe\",\n    \"phone\": \"+79998887766\"\n}"
 				}
 			]
 		},
@@ -363,10 +447,92 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": "http://127.0.0.1:8000/contact/2/",
-				"description": "def put(self, request, pk, format=None):\n    contact = self.get_object(pk)\n    serializer = ContactSerializer(contact, data=request.data)\n    if serializer.is_valid():\n        serializer.save()\n        return Response(serializer.data)\n    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)"
+				"url": {
+					"raw": "http://127.0.0.1:8000/contact/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"contact",
+						"1",
+						""
+					]
+				},
+				"description": "По методу DELETE с указанием идентификатора удаляется конкретная запись из телефонной книги."
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Удалить контакт по id",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/contact/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"contact",
+								"1",
+								""
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 24 Feb 2021 08:11:11 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.8.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, PUT, DELETE, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "\"Contact No.1 deleted\""
+				}
+			]
 		}
 	],
 	"event": [
